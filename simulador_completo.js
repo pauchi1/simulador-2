@@ -42,5 +42,25 @@ function guardarCliente() {
     egresos: egresos,
   }
   clientes.push(nuevoCliente);
-  console.log(clientes);
+  pintarClientes();
+  alert("cliente guardado correctamente!");
+}
+
+function pintarClientes() {
+  let cmpTabla = document. getElementById("tablaClientes");
+  let contenidoTabla = "";
+  let clienteActual;
+  
+  for (let i=0; i<clientes.length;i++) {
+    clienteActual = clientes[i];
+    contenidoTabla += "<tr>" +"<td>" + clienteActual.cedula + "</td>" +
+    "<td>" + clienteActual.nombre + "</td>" + 
+    "<td>" + clienteActual.apellido + "</td>" +
+    "<td>" + clienteActual.ingresos + "</td>" +
+    "<td>" + clienteActual.egresos + "</td>" +
+    "<td>" + "<button onclick='cargarCliente(" + i + ")'>Actualizar</button>" +
+    "<button onclick='eliminarCliente(" + i + ")'>Eliminar</button>" + "</td>"+
+    "</tr>";
+  }
+  cmpTabla.innerHTML = contenidoTabla;
 }
