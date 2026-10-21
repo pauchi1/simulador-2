@@ -17,5 +17,13 @@ function ocultarSecciones() {
 function mostrarSeccion(id) {
   ocultarSecciones();
   document.getElementById(id).classList.add("activa");
+}
 
+function guardarTasa() {
+  let tasa = recuperarFloat("tasaInteres");
+  if (tasa >= 10 && tasa <= 20) {
+      mostrarTexto("mensajeTasa", "Tasa configurada correctamente: " + tasa + "%");
+  } else {
+      mostrarTexto("mensajeTasa", "La tasa debe estar entre 10% y 20%");
+  }
 }
