@@ -27,3 +27,20 @@ function guardarTasa() {
       mostrarTexto("mensajeTasa", "La tasa debe estar entre 10% y 20%");
   }
 }
+
+function guardarCliente() {
+  let cedula = recuperaraTexto("txtCedula");
+  let nombre = recuperaraTexto("txtNombre");
+  let apellido = recuperaraTexto("txtApellido");
+  let ingresos = recuperarFloat("txtIngresos");
+  let egresos = recuperarFloat("txtEgresos");
+  let nuevoCliente = {
+    cedula: cedula,
+    nombre: nombre,
+    apellido: apellido,
+    ingresos: ingresos,
+    egresos: egresos,
+  }
+  clientes.push(nuevoCliente);
+  console.log(clientes);
+}
