@@ -12,6 +12,7 @@
 function ocultarSecciones() {
     document.getElementById("parametros").classList.remove("activa");
     document.getElementById("clientes").classList.remove("activa");
+    document.getElementById("creditos").classList.remove("activa");
 }
 
 function mostrarSeccion(id) {
@@ -119,10 +120,58 @@ function pintarClientes() {
 }
 
 function limpiar() {
-    mostrarTextoEnCaja("txtCedula", "");
-    mostrarTextoEnCaja("txtNombre", "");
-    mostrarTextoEnCaja("txtApellido", "");
-    mostrarTextoEnCaja("txtIngresos", "");
-    mostrarTextoEnCaja("txtEgresos", "");
+  mostrarTextoEnCaja("txtCedula", "");
+  mostrarTextoEnCaja("txtNombre", "");
+  mostrarTextoEnCaja("txtApellido", "");
+  mostrarTextoEnCaja("txtIngresos", "");
+  mostrarTextoEnCaja("txtEgresos", "");
+  clienteSeleccionado = null;
+}
+
+function buscarClienteCredito() {
+  let cedulabuscada = recuperaraTexto("buscarCedulaCredito");
+  let contenedorDatos = document.getElementById("datosClienteCredito");
+  let clienteEncontrado = buscarCliente(cedulabuscada);
+  if (clienteEncontrado != null) {
+    clienteSeleccionado = clienteEncontrado;
+    contenedorDatos.innerHTML = 
+      "<h3>Datos del Cliente</h3>" +
+      "<p><strong>Cédula:</strong> " + clienteEncontrado.cedula + "</p>" +
+      "<p><strong>Nombre:</strong> " + clienteEncontrado.nombre + "</p>" +
+      "<p><strong>Apellido:</strong> " + clienteEncontrado.apellido + " </p>" +
+      "<p><strong>Ingresos:</strong> " + clienteEncontrado.ingresos + "</p>" +
+      "<p><strong>Egresos:</strong> " + clienteEncontrado.egresos + "</p>";
+  } else {
     clienteSeleccionado = null;
+    contenedorDatos.innerHTML = 
+      "<h3>Datos del Cliente</h3>" +
+      "<p style='color: red;'>Cliente no encontrado con la cédula ingresada.</p>";
+  }
+}
+
+function calcularCredito() {
+  let monto = recuperarFloat("montoCredito");
+  let plazo = recuperarFloat("plazoCredito");
+  let ingresos = clienteSeleccionado.ingresos;
+  let egresos = clienteSeleccionado.egresos;
+  let valorDisponible = calcularDisponible(ingresos, egresos);
+  let capacidadPago = calcularCapacidadPago(valorDisponible);
+  let interes = calcularInteresSimple(monto, tasaInteres, plazo);
+  let totalPagar = calcularTotalPagar(monto, interes);
+  let cuotaMensual = calcularCuotaMensual(totalPagar, plazo);
+  let resultadoAprobacion = aprobarCredito(capacidadPago, cuotaMensual);
+  let textoResultado = "";
+  let cmpResultado = document.getElementById("resultadoCredito");
+  if (resultadoAprobacion == true) {
+    textoResultado = "APROBADO";
+    cmpResultado.className = "aprobado";
+  } else {
+    textoResultado = "RECHAZADO";
+    cmpResultado.className = "rechazado";
+  }
+  cmpResultado.innerHTML = 
+    "Capacidad de pago: " + capacidadPago + "<br>" +
+    "Total a pagar: " + totalPagar + "<br>" +
+    "Cuota mensual: " + cuotaMensual + "<br>" +
+    "RESULTADO: " + textoResultado;
 }

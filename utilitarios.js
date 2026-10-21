@@ -33,3 +33,39 @@ function recuperaraTexto(idComponente){
         componente.src = rutaImagen;
     
     }
+
+    function calcularDisponible(ingresos, egresos) {
+    let valorDisponible = ingresos - egresos;
+    if (valorDisponible < 0) {
+        valorDisponible = 0;
+    }
+    return valorDisponible;
+}
+function calcularCapacidadPago(montoDisponible) {
+    let CapacidadPago = montoDisponible * 0.3;
+    return CapacidadPago;
+}
+
+function calcularInteresSimple(monto, tasa, plazoAnios) {
+    let interes = plazoAnios * monto * (tasa/100);
+    return interes;
+}
+
+function calcularTotalPagar(monto, interes) {
+    let totalPagar = monto + interes + 100;
+    return totalPagar;
+}
+
+function calcularCuotaMensual(total, plazoAnios) {
+    let cuotaMensual = total / (plazoAnios * 12);
+    let totalMensual = cuotaMensual.toFixed(2);
+    return totalMensual;
+}
+
+function aprobarCredito(capacidadPago, cuotaMensual) {
+    if (capacidadPago > cuotaMensual) {
+        return true;
+    } else {
+        return false;
+    }
+}
