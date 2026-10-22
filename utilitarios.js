@@ -34,7 +34,9 @@ function recuperaraTexto(idComponente){
     
     }
 
-    function calcularDisponible(ingresos, egresos) {
+//funciones para el crédito
+
+function calcularDisponible(ingresos, egresos) {
     let valorDisponible = ingresos - egresos;
     if (valorDisponible < 0) {
         valorDisponible = 0;
