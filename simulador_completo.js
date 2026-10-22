@@ -35,12 +35,14 @@ function guardarCliente() {
   let apellido = recuperaraTexto("txtApellido");
   let ingresos = recuperarFloat("txtIngresos");
   let egresos = recuperarFloat("txtEgresos");
+  let email = recuperaraTexto("email");
   let nuevoCliente = {
     cedula: cedula,
     nombre: nombre,
     apellido: apellido,
     ingresos: ingresos,
     egresos: egresos,
+    email: email
   }
   clientes.push(nuevoCliente);
   pintarClientes();
@@ -53,6 +55,7 @@ function guardarCliente() {
     let apellido = recuperaraTexto("txtApellido");
     let ingresos = recuperarFloat("txtIngresos");
     let egresos = recuperarFloat("txtEgresos");
+    let email = recuperaraTexto("email");
     let clienteExistente = buscarCliente(cedula);
     if (clienteExistente == null) {
         let nuevoCliente = {
@@ -60,7 +63,8 @@ function guardarCliente() {
             nombre: nombre,
             apellido: apellido,
             ingresos: ingresos,
-            egresos: egresos
+            egresos: egresos,
+            email: email
         };
         clientes.push(nuevoCliente);
         alert("Cliente creado correctamente");
@@ -69,6 +73,7 @@ function guardarCliente() {
         clienteExistente.apellido = apellido;
         clienteExistente.ingresos = ingresos;
         clienteExistente.egresos = egresos;
+        clienteExistente.email = email;
         alert("Cliente actualizado correctamente");
     }
     pintarClientes();
@@ -112,8 +117,9 @@ function pintarClientes() {
     "<td>" + clienteActual.apellido + "</td>" +
     "<td>" + clienteActual.ingresos + "</td>" +
     "<td>" + clienteActual.egresos + "</td>" +
+    "<td>" + clienteActual.email + "</td>" +
     "<td>" + "<button onclick='seleccionarCliente(" + clienteActual.cedula + ")'>Actualizar</button>" +
-    "<button onclick='eliminarCliente(" + i + ")'>Eliminar</button>" + "</td>"+
+    "<button >Eliminar</button>" + "</td>"+
     "</tr>";
   }
   cmpTabla.innerHTML = contenidoTabla;

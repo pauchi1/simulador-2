@@ -15,7 +15,12 @@
   <button onclick="mostrarSeccion('parametros')">Parámetros</button>
   <button onclick="mostrarSeccion('clientes')">Clientes</button>
   <button onclick="mostrarSeccion('creditos')">Créditos</button>
+  <button onclick="mostrarSeccion('nombre')">contacto</button>
 </nav>
+
+<section id="nombre">
+<h1>Paulo Chiluisa</h1>
+</section>
 
 <section id="parametros" >
   <h2>Configurar Parámetros</h2>
@@ -38,6 +43,7 @@
   <input type="text" id="txtApellido" placeholder="Apellido">
   <input type="number" id="txtIngresos" placeholder="Ingresos">
   <input type="number" id="txtEgresos" placeholder="Egresos">
+  <input type="text" id="email" placeholder="email">
 
   <br>
 
@@ -52,6 +58,7 @@
         <th>Apellido</th>
         <th>Ingresos</th>
         <th>Egresos</th>
+        <th>Gmail</th>
         <th>Acciones</th>
       </tr>
     </thead>
@@ -62,6 +69,7 @@
           <td>Pérez</td>
           <td>1200</td>
           <td>500</td>
+          <td></td>
           <td>
             <button>Actualizar</button>
             <button>Eliminar</button>
@@ -73,6 +81,7 @@
           <td>Gómez</td>
           <td>1500</td>
           <td>600</td>
+          <td></td>
           <td>
             <button>Actualizar</button>
             <button>Eliminar</button>
@@ -84,6 +93,7 @@
           <td>Ramírez</td>
           <td>900</td>
           <td>350</td>
+          <td></td>
           <td>
             <button>Actualizar</button>
             <button>Eliminar</button>
@@ -96,6 +106,7 @@
   <h2>Solicitar Crédito</h2>
 
   <input type="text" id="buscarCedulaCredito">
+  <button id="btnAsignarCredito" onclick="asignarCredito()" disabled>Asignar Crédito</button>
   <button onclick="buscarClienteCredito()">Buscar cliente</button>
 
   <div id="datosClienteCredito" class="card"></div>
